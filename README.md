@@ -38,7 +38,7 @@ Oh yes:
 Add it to your project:
 
 ```console
-yarn add use-wallet
+yarn add @binance-chain/bsc-use-wallet
 ```
 
 Use it in your React app:
