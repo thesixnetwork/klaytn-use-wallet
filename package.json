@@ -1,5 +1,5 @@
 {
-  "name": "use-wallet",
+  "name": "@binance-chain/bsc-use-wallet",
   "version": "0.8.0",
   "author": "Aragon Association <legal@aragon.org>",
   "license": "MIT",

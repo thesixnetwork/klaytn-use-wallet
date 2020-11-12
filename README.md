@@ -47,7 +47,9 @@ Use it in your React app:
 // App.js
 
 import React from 'react'
-import { useWallet, UseWalletProvider } from 'use-wallet'
+import { render } from 'react-dom'
+import bsc from '@binance-chain/bsc-use-wallet'
+import { UseWalletProvider } from 'use-wallet'
 
 function App() {
   const wallet = useWallet()
@@ -76,15 +78,12 @@ function App() {
 
 // Wrap everything in <UseWalletProvider />
 export default () => (
-  <UseWalletProvider
-    chainId={1}
-    connectors={{
-      // This is how connectors get configured
-      portis: { dAppId: 'my-dapp-id-123-xyz' },
-    }}
-  >
-    <App />
-  </UseWalletProvider>
+  (
+    <UseWalletProvider connectors={{ bsc }}>
+      <App />
+    </UseWalletProvider>
+  ),
+  document.getElementById('root')
 )
 ```
 
