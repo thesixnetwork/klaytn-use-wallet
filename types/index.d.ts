@@ -1,5 +1,5 @@
-declare module 'use-wallet' {
-  import { ReactNode } from 'react';
+declare module '@binance-chain/bsc-use-wallet' {
+  import { ReactNode } from 'react'
 
   type Connectors = Partial<{
     authereum: {}
@@ -10,9 +10,9 @@ declare module 'use-wallet' {
     squarelink: { clientId: string; options: object }
     provided: {}
     torus: {
-      chainId?: number;
-      initOptions: object;
-      constructorOptions: object;
+      chainId?: number
+      initOptions: object
+      constructorOptions: object
     }
     walletconnect: { rpcUrl: string }
     walletlink: { url: string; appName: string; appLogoUrl: string }
@@ -26,7 +26,11 @@ declare module 'use-wallet' {
     connect(connectorId: keyof Connectors): Promise<void>
     connector: keyof Connectors
     connectors: Connectors
-    error: UnsupportedChainError | UnsupportedChainError | RejectedActivationError | ConnectorConfigError
+    error:
+      | UnsupportedChainError
+      | UnsupportedChainError
+      | RejectedActivationError
+      | ConnectorConfigError
     ethereum: T
     networkName: string
     getBlockNumber(): number
