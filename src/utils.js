@@ -1,11 +1,6 @@
 const KNOWN_CHAINS = new Map([
-  ['1', 'Mainnet'],
-  ['2', 'Expanse'],
-  ['3', 'Ropsten'],
-  ['4', 'Rinkeby'],
-  ['5', 'Goerli'],
-  ['42', 'Kovan'],
-  ['100', 'xDai'],
+  ['8217', 'Mainnet'],
+  ['1001', 'Baobab'],
   // This chainId is arbitrary and can be changed,
   // but by convention this is the number used
   // for local chains (ganache, buidler, etc) by default.
@@ -30,24 +25,24 @@ export function rpcResult(response) {
   return response || null
 }
 
-async function sendCompat(ethereum, method, params) {
+async function sendCompat(klaytn, method, params) {
   // As of today (2020-02-17), MetaMask defines a send() method that correspond
   // to the one defined in EIP 1193. This is a breaking change since MetaMask
   // used to define a send() method that was an alias of the sendAsync()
   // method, and has a different signature than the send() defined by EIP 1193.
-  // The latest version of Web3.js (1.2.6) is overwriting the ethereum.send()
-  // provided by MetaMask, to replace it with ethereum.sendAsync(), making it
+  // The latest version of Web3.js (1.2.6) is overwriting the klaytn.send()
+  // provided by MetaMask, to replace it with klaytn.sendAsync(), making it
   // incompatible with EIP 1193 again.
-  // This  means there is no way to detect that the ethereum.send() provided
+  // This  means there is no way to detect that the klaytn.send() provided
   // corresponds to EIP 1193 or not. This is why we use sendAsync() when
   // available and send() otherwise, rather than the other way around.
-  if (ethereum.sendAsync && ethereum.selectedAddress) {
+  if (klaytn.sendAsync && klaytn.selectedAddress) {
     return new Promise((resolve, reject) => {
-      ethereum.sendAsync(
+      klaytn.sendAsync(
         {
           method,
           params,
-          from: ethereum.selectedAddress,
+          from: klaytn.selectedAddress,
           jsonrpc: '2.0',
           id: 0,
         },
@@ -62,24 +57,24 @@ async function sendCompat(ethereum, method, params) {
     }).then(rpcResult)
   }
 
-  return ethereum.send(method, params).then(rpcResult)
+  return klaytn.send(method, params).then(rpcResult)
 }
 
-export async function getAccountIsContract(ethereum, account) {
+export async function getAccountIsContract(klaytn, account) {
   try {
-    const code = await sendCompat(ethereum, 'eth_getCode', [account])
+    const code = await sendCompat(klaytn, 'klay_getCode', [account])
     return code !== '0x'
   } catch (err) {
     return false
   }
 }
 
-export async function getAccountBalance(ethereum, account) {
-  return sendCompat(ethereum, 'eth_getBalance', [account, 'latest'])
+export async function getAccountBalance(klaytn, account) {
+  return sendCompat(klaytn, 'klay_getBalance', [account, 'latest'])
 }
 
-export async function getBlockNumber(ethereum) {
-  return sendCompat(ethereum, 'eth_blockNumber', [])
+export async function getBlockNumber(klaytn) {
+  return sendCompat(klaytn, 'klay_blockNumber', [])
 }
 
 export function pollEvery(fn, delay) {

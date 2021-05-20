@@ -1,22 +1,8 @@
-declare module '@binance-chain/bsc-use-wallet' {
+declare module 'klaytn-use-wallet' {
   import { ReactNode } from 'react'
 
   type Connectors = Partial<{
-    authereum: {}
-    fortmatic: { apiKey: string }
-    frame: {}
     injected: {}
-    portis: { dAppId: string }
-    squarelink: { clientId: string; options: object }
-    provided: {}
-    torus: {
-      chainId?: number
-      initOptions: object
-      constructorOptions: object
-    }
-    walletconnect: { rpcUrl: string }
-    walletlink: { url: string; appName: string; appLogoUrl: string }
-    bsc: {}
   }>
 
   export interface Wallet<T> {

@@ -9,9 +9,9 @@ import React, {
 } from 'react'
 import {
   UnsupportedChainIdError,
-  Web3ReactProvider,
-  useWeb3React,
-} from '@web3-react/core'
+  CaverJsReactProvider,
+  useCaverJsReact,
+} from 'caverjs-react-core'
 import JSBI from 'jsbi'
 import { getConnectors } from './connectors'
 import {
@@ -75,22 +75,22 @@ function useGetBlockNumber() {
   return getBlockNumber
 }
 
-function useWalletBalance({ account, ethereum, pollBalanceInterval }) {
+function useWalletBalance({ account, klaytn, pollBalanceInterval }) {
   const [balance, setBalance] = useState(NO_BALANCE)
 
   useEffect(() => {
-    if (!account || !ethereum) {
+    if (!account || !klaytn) {
       return
     }
 
     let cancel = false
 
     // Poll wallet balance
-    const pollBalance = pollEvery((account, ethereum, onUpdate) => {
+    const pollBalance = pollEvery((account, klaytn, onUpdate) => {
       let lastBalance = '-1'
       return {
         async request() {
-          return getAccountBalance(ethereum, account)
+          return getAccountBalance(klaytn, account)
             .then(value => (value ? JSBI.BigInt(value).toString() : NO_BALANCE))
             .catch(() => NO_BALANCE)
         },
@@ -104,20 +104,20 @@ function useWalletBalance({ account, ethereum, pollBalanceInterval }) {
     }, pollBalanceInterval)
 
     // start polling balance every x time
-    const stopPollingBalance = pollBalance(account, ethereum, setBalance)
+    const stopPollingBalance = pollBalance(account, klaytn, setBalance)
 
     return () => {
       cancel = true
       stopPollingBalance()
       setBalance(NO_BALANCE)
     }
-  }, [account, ethereum, pollBalanceInterval])
+  }, [account, klaytn, pollBalanceInterval])
 
   return balance
 }
 
 // Only watch block numbers, and return functions allowing to subscribe to it.
-function useWatchBlockNumber({ ethereum, pollBlockNumberInterval }) {
+function useWatchBlockNumber({ klaytn, pollBlockNumberInterval }) {
   const lastBlockNumber = useRef(null)
 
   // Using listeners lets useWallet() decide if it wants to expose the block
@@ -151,7 +151,7 @@ function useWatchBlockNumber({ ethereum, pollBlockNumberInterval }) {
   }, [])
 
   useEffect(() => {
-    if (!ethereum) {
+    if (!klaytn) {
       updateBlockNumber(null)
       return
     }
@@ -160,7 +160,7 @@ function useWatchBlockNumber({ ethereum, pollBlockNumberInterval }) {
 
     const pollBlockNumber = pollEvery(() => {
       return {
-        request: () => getBlockNumber(ethereum),
+        request: () => getBlockNumber(klaytn),
         onResult: latestBlockNumber => {
           if (!cancel) {
             updateBlockNumber(
@@ -179,7 +179,7 @@ function useWatchBlockNumber({ ethereum, pollBlockNumberInterval }) {
       cancel = true
       stopPollingBlockNumber()
     }
-  }, [ethereum, pollBlockNumberInterval, updateBlockNumber])
+  }, [klaytn, pollBlockNumberInterval, updateBlockNumber])
 
   return { addBlockNumberListener, removeBlockNumberListener }
 }
@@ -202,14 +202,14 @@ function UseWalletProvider({
   const [error, setError] = useState(null)
   const [type, setType] = useState(null)
   const [status, setStatus] = useState('disconnected')
-  const web3ReactContext = useWeb3React()
+  const caverJsReactContext = useCaverJsReact()
   const activationId = useRef(0)
-  const { account, library: ethereum } = web3ReactContext
-  const balance = useWalletBalance({ account, ethereum, pollBalanceInterval })
+  const { account, library: klaytn } = caverJsReactContext
+  const balance = useWalletBalance({ account, klaytn, pollBalanceInterval })
   const {
     addBlockNumberListener,
     removeBlockNumberListener,
-  } = useWatchBlockNumber({ ethereum, pollBlockNumberInterval })
+  } = useWatchBlockNumber({ klaytn, pollBlockNumberInterval })
 
   // Combine the user-provided connectors with the default ones (see connectors.js).
   const connectors = useMemo(
@@ -218,13 +218,13 @@ function UseWalletProvider({
   )
 
   const reset = useCallback(() => {
-    if (web3ReactContext.active) {
-      web3ReactContext.deactivate()
+    if (caverJsReactContext.active) {
+      caverJsReactContext.deactivate()
     }
     setConnector(null)
     setError(null)
     setStatus('disconnected')
-  }, [web3ReactContext])
+  }, [caverJsReactContext])
 
   const connect = useCallback(
     async (connectorId = 'injected') => {
@@ -250,15 +250,15 @@ function UseWalletProvider({
 
       const connector = connectors[connectorId]
 
-      const web3ReactConnector =
+      const caverJsReactConnector =
         connector &&
-        connector.web3ReactConnector &&
-        connector.web3ReactConnector({
+        connector.caverJsReactConnector &&
+        connector.caverJsReactConnector({
           chainId,
           ...(connector.config || {}),
         })
 
-      if (!web3ReactConnector) {
+      if (!caverJsReactConnector) {
         setStatus('error')
         setError(new ConnectorUnsupportedError(connectorId))
         return
@@ -268,7 +268,7 @@ function UseWalletProvider({
         // TODO: there is no way to prevent an activation to complete, but we
         // could reconnect to the last provider the user tried to connect to.
         setConnector(connectorId)
-        await web3ReactContext.activate(web3ReactConnector, null, true)
+        await caverJsReactContext.activate(caverJsReactConnector, null, true)
         setStatus('connected')
       } catch (err) {
         // Don’t throw if another connection has happened in the meantime.
@@ -297,11 +297,11 @@ function UseWalletProvider({
         setError(err)
       }
     },
-    [chainId, connectors, reset, web3ReactContext]
+    [chainId, connectors, reset, caverJsReactContext]
   )
 
   useEffect(() => {
-    if (!account || !ethereum) {
+    if (!account || !klaytn) {
       return
     }
 
@@ -309,7 +309,7 @@ function UseWalletProvider({
 
     setType(null)
 
-    getAccountIsContract(ethereum, account).then(isContract => {
+    getAccountIsContract(klaytn, account).then(isContract => {
       if (!cancel) {
         setStatus('connected')
         setType(isContract ? 'contract' : 'normal')
@@ -321,11 +321,11 @@ function UseWalletProvider({
       setStatus('disconnected')
       setType(null)
     }
-  }, [account, ethereum])
+  }, [account, klaytn])
 
   const wallet = useMemo(
     () => ({
-      _web3ReactContext: web3ReactContext,
+      _caverJsReactContext: caverJsReactContext,
       account: account || null,
       balance,
       chainId,
@@ -333,7 +333,7 @@ function UseWalletProvider({
       connector,
       connectors,
       error,
-      ethereum,
+      klaytn,
       networkName: getNetworkName(chainId),
       reset,
       status,
@@ -347,11 +347,11 @@ function UseWalletProvider({
       connector,
       connectors,
       error,
-      ethereum,
+      klaytn,
       type,
       reset,
       status,
-      web3ReactContext,
+      caverJsReactContext,
     ]
   )
 
@@ -379,7 +379,7 @@ UseWalletProvider.propTypes = {
 }
 
 UseWalletProvider.defaultProps = {
-  chainId: 1,
+  chainId: 8217,
   connectors: {},
   pollBalanceInterval: 2000,
   pollBlockNumberInterval: 5000,
@@ -387,9 +387,9 @@ UseWalletProvider.defaultProps = {
 
 function UseWalletProviderWrapper(props) {
   return (
-    <Web3ReactProvider getLibrary={ethereum => ethereum}>
+    <CaverJsReactProvider getLibrary={klaytn => klaytn}>
       <UseWalletProvider {...props} />
-    </Web3ReactProvider>
+    </CaverJsReactProvider>
   )
 }
 
