@@ -17,7 +17,7 @@ declare module 'klaytn-use-wallet' {
       | UnsupportedChainError
       | RejectedActivationError
       | ConnectorConfigError
-    ethereum: T
+    klaytn: T
     networkName: string
     getBlockNumber(): number
     reset(): void

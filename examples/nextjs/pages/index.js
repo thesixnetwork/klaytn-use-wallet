@@ -4,11 +4,12 @@ import {
   ConnectionRejectedError,
   UseWalletProvider,
   useWallet,
-} from 'use-wallet'
+} from 'klaytn-use-wallet'
 
 function App() {
   const wallet = useWallet()
   const blockNumber = wallet.getBlockNumber()
+  console.log("wallet = ", wallet)
 
   const activate = connector => wallet.connect(connector)
 
@@ -99,8 +100,9 @@ function App() {
 function HomePage() {
   return (
     <UseWalletProvider
-      chainId={1}
+      chainId={8217}
       connectors={{
+        injected: {},
         fortmatic: { apiKey: '' },
         portis: { dAppId: '' },
         walletconnect: { rpcUrl: 'https://mainnet.eth.aragon.network/' },

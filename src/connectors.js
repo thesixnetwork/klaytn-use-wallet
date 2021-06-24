@@ -9,9 +9,9 @@ export function getConnectors(chainId, connectorsInitsOrConfigs = {}) {
   // Split the connector initializers from the confs.
   const [inits, configs] = Object.entries(connectorsInitsOrConfigs).reduce(
     ([inits, configs], [id, initOrConfig]) => {
-      // Having a web3ReactConnector function is
+      // Having a caverJsReactConnector function is
       // the only prerequisite for an initializer.
-      if (typeof initOrConfig.web3ReactConnector === 'function') {
+      if (typeof initOrConfig.caverJsReactConnector === 'function') {
         return [{ ...inits, [id]: initOrConfig }, configs]
       }
       return [inits, [...configs, [id, initOrConfig]]]
@@ -21,7 +21,7 @@ export function getConnectors(chainId, connectorsInitsOrConfigs = {}) {
 
   const connectors = {
     injected: {
-      web3ReactConnector({ chainId }) {
+      caverJsReactConnector({ chainId }) {
         return new InjectedConnector({ supportedChainIds: [chainId] })
       },
       handleActivationError(err) {
