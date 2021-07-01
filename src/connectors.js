@@ -3,7 +3,11 @@ import {
   // NoEthereumProviderError as InjectedNoEthereumProviderError,
   UserRejectedRequestError as InjectedUserRejectedRequestError,
 } from 'caverjs-react-injected-connector'
+import {
+  KlipConnector
+} from '@kanthakran/klip-connr'
 import { ConnectionRejectedError, ConnectorConfigError } from './errors'
+const index = require("./index")
 
 export function getConnectors(chainId, connectorsInitsOrConfigs = {}) {
   // Split the connector initializers from the confs.
@@ -23,6 +27,16 @@ export function getConnectors(chainId, connectorsInitsOrConfigs = {}) {
     injected: {
       caverJsReactConnector({ chainId }) {
         return new InjectedConnector({ supportedChainIds: [chainId] })
+      },
+      handleActivationError(err) {
+        if (err instanceof InjectedUserRejectedRequestError) {
+          return new ConnectionRejectedError()
+        }
+      },
+    },
+    klip: {
+      caverJsReactConnector({ chainId, showModal, closeModal }) {
+        return new KlipConnector({ supportedChainIds: [chainId], showModal, closeModal })
       },
       handleActivationError(err) {
         if (err instanceof InjectedUserRejectedRequestError) {

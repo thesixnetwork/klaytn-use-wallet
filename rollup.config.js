@@ -30,7 +30,11 @@ export default {
       mainFields: ['module', 'browser', 'jsnext', 'main'],
       preferBuiltins: false,
     }),
-    commonjs(),
+    commonjs({
+      namedExports: {
+        "react-dom": ["createPortal", "findDOMNode"],
+      },
+    }),
     json(),
     terser(),
   ],

@@ -193,7 +193,6 @@ function UseWalletProvider({
   pollBlockNumberInterval,
 }) {
   const walletContext = useContext(UseWalletContext)
-
   if (walletContext !== null) {
     throw new Error('<UseWalletProvider /> has already been declared.')
   }
@@ -210,7 +209,7 @@ function UseWalletProvider({
     addBlockNumberListener,
     removeBlockNumberListener,
   } = useWatchBlockNumber({ klaytn, pollBlockNumberInterval })
-
+  
   // Combine the user-provided connectors with the default ones (see connectors.js).
   const connectors = useMemo(
     () => getConnectors(chainId, connectorsInitsOrConfigs),
@@ -249,7 +248,7 @@ function UseWalletProvider({
       setStatus('connecting')
 
       const connector = connectors[connectorId]
-
+      
       const caverJsReactConnector =
         connector &&
         connector.caverJsReactConnector &&
@@ -267,9 +266,13 @@ function UseWalletProvider({
       try {
         // TODO: there is no way to prevent an activation to complete, but we
         // could reconnect to the last provider the user tried to connect to.
+        
         setConnector(connectorId)
+        
         await caverJsReactContext.activate(caverJsReactConnector, null, true)
+        
         setStatus('connected')
+        
       } catch (err) {
         // Don’t throw if another connection has happened in the meantime.
         if (id !== activationId.current) {
@@ -295,6 +298,7 @@ function UseWalletProvider({
         }
         // Otherwise, set to state the received error
         setError(err)
+        
       }
     },
     [chainId, connectors, reset, caverJsReactContext]
@@ -304,7 +308,7 @@ function UseWalletProvider({
     if (!account || !klaytn) {
       return
     }
-
+    
     let cancel = false
 
     setType(null)

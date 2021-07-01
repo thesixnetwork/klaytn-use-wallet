@@ -19,10 +19,13 @@
     "prepare": "rm -rf ./dist && yarn build"
   },
   "dependencies": {
-    "caverjs-react-core": "^1.0.0",
-    "caverjs-react-injected-connector": "^1.0.0",
+    "@kanthakran/klip-connr": "file:../caverjs-react/packages/klip-conn",
+    "caverjs-react-abstract-connector": "file:../caverjs-react/packages/abstract-connector",
+    "caverjs-react-core": "file:../caverjs-react/packages/core",
+    "caverjs-react-injected-connector": "file:../caverjs-react/packages/injected-connector",
     "jsbi": "^3.1.1",
-    "react": "^17.0.2"
+    "react": "file:../definix-frontend/node_modules/react",
+    "react-dom": "file:../definix-frontend/node_modules/react-dom"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
@@ -49,8 +52,5 @@
     "rollup": "^1.29.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.2.0"
-  },
-  "peerDependencies": {
-    "react": "^16.12.0"
   }
 }

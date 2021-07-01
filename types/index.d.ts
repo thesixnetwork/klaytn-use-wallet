@@ -3,6 +3,10 @@ declare module 'klaytn-use-wallet' {
 
   type Connectors = Partial<{
     injected: {}
+    klip:{
+      showModal:()=>void,
+      closeModal:()=>void
+    }
   }>
 
   export interface Wallet<T> {
