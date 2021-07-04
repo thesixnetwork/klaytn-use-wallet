@@ -42,8 +42,9 @@ function useWallet() {
   }
 
   const getBlockNumber = useGetBlockNumber()
+  
   const { wallet } = walletContext
-
+  
   return useMemo(() => ({ ...wallet, getBlockNumber }), [
     getBlockNumber,
     wallet,
@@ -58,6 +59,7 @@ function useGetBlockNumber() {
   const getBlockNumber = useCallback(() => {
     requestedBlockNumber.current = true
     walletContext.addBlockNumberListener(setBlockNumber)
+    console.log("getBlockNumber :",blockNumber)
     return blockNumber
   }, [walletContext, blockNumber])
 
