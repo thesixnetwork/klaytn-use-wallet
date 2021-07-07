@@ -3,9 +3,9 @@ declare module 'klaytn-use-wallet' {
 
   type Connectors = Partial<{
     injected: {}
-    klip:{
-      showModal:()=>void,
-      closeModal:()=>void
+    klip: {
+      showModal: () => void,
+      closeModal: () => void
     }
   }>
 
@@ -17,10 +17,10 @@ declare module 'klaytn-use-wallet' {
     connector: keyof Connectors
     connectors: Connectors
     error:
-      | UnsupportedChainError
-      | UnsupportedChainError
-      | RejectedActivationError
-      | ConnectorConfigError
+    | UnsupportedChainError
+    | UnsupportedChainError
+    | RejectedActivationError
+    | ConnectorConfigError
     klaytn: T
     networkName: string
     getBlockNumber(): number
@@ -28,7 +28,10 @@ declare module 'klaytn-use-wallet' {
     status: string
     type: string | null
   }
-
+  export interface KlipModalContext {
+    showModal: boolean
+    setShowModal: (state: boolean) => void
+  }
   interface UseWalletProviderProps {
     chainId: number
     children: ReactNode
@@ -61,4 +64,8 @@ declare module 'klaytn-use-wallet' {
   export function useWallet<T>(props?: UseWalletProps): Wallet<T>
 
   export function UseWalletProvider(props: UseWalletProviderProps)
+
+  export function KlipModalProvider(children: any): JSX.Element
+
+  export function KlipModalContext(): React.Context<KlipModalContext>
 }

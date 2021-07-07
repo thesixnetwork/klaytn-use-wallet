@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@kanthakran/klip-connr": "file:../caverjs-react/packages/klip-conn",
+    "@rollup/plugin-image": "^2.0.6",
     "caverjs-react-abstract-connector": "file:../caverjs-react/packages/abstract-connector",
     "caverjs-react-core": "file:../caverjs-react/packages/core",
     "caverjs-react-injected-connector": "file:../caverjs-react/packages/injected-connector",

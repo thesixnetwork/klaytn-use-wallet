@@ -4,6 +4,8 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+import image from '@rollup/plugin-image';
+
 
 export default {
   input: './src/index.js',
@@ -23,6 +25,7 @@ export default {
   context: 'window',
   external: [...builtins, 'react'],
   plugins: [
+    image(),
     babel({
       exclude: 'node_modules/**',
     }),
