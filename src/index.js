@@ -11,7 +11,7 @@ import {
   UnsupportedChainIdError,
   CaverJsReactProvider,
   useCaverJsReact,
-} from 'caverjs-react-core'
+} from '@sixnetwork/caverjs-react-core'
 import JSBI from 'jsbi'
 import { getConnectors } from './connectors'
 import {
