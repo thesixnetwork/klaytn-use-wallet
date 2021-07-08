@@ -1021,46 +1021,46 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sixnetwork/caverjs-react-abstract-connector@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-abstract-connector/-/caverjs-react-abstract-connector-1.0.0.tgz#6caa5e0dc4a9883b9c41420e230f0f2388b78e1a"
-  integrity sha512-fKvCfJyqSL9NqzYBQE/+oX4oDyrWWkM2p/cjAzgIFxv9M1HrrNPuU0IBwmwWkwRgg8GKEJTIYtAGvK1GgZPULw==
+"@sixnetwork/caverjs-react-abstract-connector@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-abstract-connector/-/caverjs-react-abstract-connector-1.0.1.tgz#d70934170b72e74495ecad5748fa0ab3a32a6c67"
+  integrity sha512-JgSPC/erNIGhQJPpCROJyDfeokXoioa9kB4iWFsdfT5T3aYcn/0pOsdOZWmeefuzkYePCvWefnC90aQiI3D+MQ==
   dependencies:
-    "@sixnetwork/caverjs-react-types" "^1.0.0"
+    "@sixnetwork/caverjs-react-types" "^1.0.1"
 
-"@sixnetwork/caverjs-react-core@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-core/-/caverjs-react-core-1.1.0.tgz#fa293b6ce8e2d70266de122ec10f09c784a1743b"
-  integrity sha512-fp5bW5987Bie1NjUbP7hISulBi0KdXGMaZedfgPhQY9mT1buUEglXAtiz3ni320fQXk5TWqirv7aCMzliwsySA==
+"@sixnetwork/caverjs-react-core@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-core/-/caverjs-react-core-1.1.1.tgz#c5183ad78cfb631c6edb2ab6a326d690df7f4892"
+  integrity sha512-6sZf3vnOg8YQQsviir9UI0TlVf4Bb6/4DVwRt0zV2lw+9wj+gYFfayEOuiFZjv3sck7Z7EsHtu+B6g3GkuKoVA==
   dependencies:
     "@ethersproject/keccak256" "^5.1.0"
-    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.0"
-    "@sixnetwork/caverjs-react-types" "^1.0.0"
+    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.1"
+    "@sixnetwork/caverjs-react-types" "^1.0.1"
     react-dom "^17.0.1"
     tiny-invariant "^1.0.6"
     tiny-warning "^1.0.3"
 
-"@sixnetwork/caverjs-react-injected-connector@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-injected-connector/-/caverjs-react-injected-connector-1.0.1.tgz#ef58230813184ccc3566c74bcad1df561587d24e"
-  integrity sha512-tcF12fkVUlAv3QzlPr1+GTNepeMv0qpt3vCS/8b1McLPz0dEDqY+MDFOShqj2kSrQfQYa76YdQ4Wb43WTrnuaA==
+"@sixnetwork/caverjs-react-injected-connector@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-injected-connector/-/caverjs-react-injected-connector-1.0.2.tgz#7a460edf3a05029bdfd8e58eb821f57527659f0c"
+  integrity sha512-7rF5vco1SPVMAWAQsBjyvN1g1zvjYpUtvfl6/Gg1Yc34NbSnzCIYuknchxIZoz+9YOEmb0aTEMnwOuWrobKAKw==
   dependencies:
-    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.0"
-    "@sixnetwork/caverjs-react-types" "^1.0.0"
+    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.1"
+    "@sixnetwork/caverjs-react-types" "^1.0.1"
     tiny-warning "^1.0.3"
 
-"@sixnetwork/caverjs-react-types@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-types/-/caverjs-react-types-1.0.0.tgz#89b7960bea37764c12a9cad5fe9a70dc4475c5ba"
-  integrity sha512-eFeP/FPjraQPPzwt6KFEv/W1OEWccu91sDC2KGP1VbmtDFwk5wEvjE0RcfWdI1kZcNCwCrSCxMX6oymrTYklcA==
-
-"@sixnetwork/klip-connector@^1.0.1":
+"@sixnetwork/caverjs-react-types@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sixnetwork/klip-connector/-/klip-connector-1.0.1.tgz#13a9454f2d9229b3b1ab211964eeecdc6ed5467b"
-  integrity sha512-zWm32ki9rqSSlgHFeA+Y3M9rN4JcLaTUS59nj9IOvl7BATBEOqMMolyz7aLHiE/NlRRYczvP2j2PQVNLmm43fw==
+  resolved "https://registry.yarnpkg.com/@sixnetwork/caverjs-react-types/-/caverjs-react-types-1.0.1.tgz#3a7e09a8e8cfa33fe50eb0fa5226e74f74303d5d"
+  integrity sha512-GEstchjp+YRkt48H2hxr7NAk6TBno0ZSRRoyXFl4ISm77ny6yLyx55EobwHnhH5m1YHe4qd6op2DSEvMWTlntg==
+
+"@sixnetwork/klip-connector@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@sixnetwork/klip-connector/-/klip-connector-1.0.2.tgz#3fd56de7c0e5818f81b46af48cccb9278d63c492"
+  integrity sha512-kJv4x44tsFRREweNTHoaY5jjmLhsQT6FlEKu5amwQjNuNYZc80pRSM62zEx6oHXDFVDFlSZLp1DnUuwgQ8W4dg==
   dependencies:
-    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.0"
-    "@sixnetwork/caverjs-react-types" "^1.0.0"
+    "@sixnetwork/caverjs-react-abstract-connector" "^1.0.1"
+    "@sixnetwork/caverjs-react-types" "^1.0.1"
     "@types/qrcode" "^1.4.0"
     axios "^0.21.1"
     lit-html "^1.4.1"
