@@ -1,4 +1,4 @@
-declare module '@kanthakarn-test/klaytn-use-wallet' {
+declare module '@sixnetwork/klaytn-use-wallet' {
   import { ReactNode } from 'react'
 
   type Connectors = Partial<{

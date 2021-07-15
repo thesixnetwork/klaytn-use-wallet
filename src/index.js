@@ -11,10 +11,10 @@ import {
   UnsupportedChainIdError,
   CaverJsReactProvider,
   useCaverJsReact,
-} from '@kanthakarn-test/caverjs-react-core'
+} from '@sixnetwork/caverjs-react-core'
 import {
   KlipConnector
-} from '@kanthakarn-test/klip-connector'
+} from '@sixnetwork/klip-connector'
 import JSBI from 'jsbi'
 import { getConnectors } from './connectors'
 import {

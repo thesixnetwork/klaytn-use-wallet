@@ -1,9 +1,9 @@
 {
-  "name": "@kanthakarn-test/klaytn-use-wallet",
+  "name": "@sixnetwork/klaytn-use-wallet",
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.10",
+  "version": "1.1.2",
   "author": "Nantanart Takonuan <nantanart@six.network>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@rollup/plugin-image": "^2.0.6",
-    "@kanthakarn-test/caverjs-react-core": "^1.0.3",
-    "@kanthakarn-test/caverjs-react-injected-connector": "^1.0.0",
-    "@kanthakarn-test/klip-connector": "^1.0.4",
+    "@sixnetwork/caverjs-react-core": "^1.1.2",
+    "@sixnetwork/caverjs-react-injected-connector": "^1.0.4",
+    "@sixnetwork/klip-connector": "^1.0.3",
     "jsbi": "^3.1.1",
     "qrcode": "^1.4.4"
   },
