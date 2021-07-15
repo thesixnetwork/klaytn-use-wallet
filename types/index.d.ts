@@ -1,4 +1,4 @@
-declare module 'klaytn-use-wallet' {
+declare module '@kanthakarn-test/klaytn-use-wallet' {
   import { ReactNode } from 'react'
 
   type Connectors = Partial<{
@@ -68,4 +68,6 @@ declare module 'klaytn-use-wallet' {
   export function KlipModalProvider(children: any): JSX.Element
 
   export function KlipModalContext(): React.Context<KlipModalContext>
+  
+  export class KlipConnector{}
 }

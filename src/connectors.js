@@ -2,10 +2,10 @@ import {
   InjectedConnector,
   // NoEthereumProviderError as InjectedNoEthereumProviderError,
   UserRejectedRequestError as InjectedUserRejectedRequestError,
-} from '@sixnetwork/caverjs-react-injected-connector'
+} from '@kanthakarn-test/caverjs-react-injected-connector'
 import {
   KlipConnector
-} from '@sixnetwork/klip-connector'
+} from '@kanthakarn-test/klip-connector'
 import { ConnectionRejectedError, ConnectorConfigError } from './errors'
 const index = require("./index")
 

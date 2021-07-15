@@ -11,7 +11,10 @@ import {
   UnsupportedChainIdError,
   CaverJsReactProvider,
   useCaverJsReact,
-} from '@sixnetwork/caverjs-react-core'
+} from '@kanthakarn-test/caverjs-react-core'
+import {
+  KlipConnector
+} from '@kanthakarn-test/klip-connector'
 import JSBI from 'jsbi'
 import { getConnectors } from './connectors'
 import {
@@ -30,6 +33,7 @@ import klipTalk from './Connect-to-KLIP-02.png'
 import klipSearch from './Connect-to-KLIP-03.png'
 import klipQr from './Connect-to-KLIP-04.png'
 import klipIcon from './Connect-to-KLIP-01.png'
+
 
 const NO_BALANCE = '-1'
 
@@ -208,8 +212,9 @@ function UseWalletProvider({
   const [type, setType] = useState(null)
   const [status, setStatus] = useState('disconnected')
   const caverJsReactContext = useCaverJsReact()
-  const activationId = useRef(0)
   const { account, library: klaytn } = caverJsReactContext
+  const activationId = useRef(0)
+  
   const balance = useWalletBalance({ account, klaytn, pollBalanceInterval })
   const {
     addBlockNumberListener,
@@ -529,7 +534,8 @@ export {
   UseWalletProviderWrapper as UseWalletProvider,
   useWallet,
   KlipModalProvider,
-  getKlipModalContext as KlipModalContext
+  getKlipModalContext as KlipModalContext,
+  KlipConnector
 }
 
 export default useWallet
