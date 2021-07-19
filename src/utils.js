@@ -1,3 +1,4 @@
+const axios = require("axios")
 const KNOWN_CHAINS = new Map([
   ['8217', 'Mainnet'],
   ['1001', 'Baobab'],
@@ -38,7 +39,7 @@ async function sendCompat(klaytn, method, params) {
   // available and send() otherwise, rather than the other way around.
   if (klaytn.sendAsync && klaytn.selectedAddress) {
     return new Promise((resolve, reject) => {
-      klaytn.sendAsync(
+      klaytn.send(
         {
           method,
           params,
@@ -62,19 +63,21 @@ async function sendCompat(klaytn, method, params) {
 
 export async function getAccountIsContract(klaytn, account) {
   try {
-    const code = await sendCompat(klaytn, 'klay_getCode', [account])
-    return code !== '0x'
+    // const code = await sendCompat(klaytn, 'klay_getCode', [account])
+    return true
   } catch (err) {
     return false
   }
 }
 
 export async function getAccountBalance(klaytn, account) {
-  return sendCompat(klaytn, 'klay_getBalance', [account, 'latest'])
+  return  new Promise((resolve) => {
+    resolve(0)
+    }) //sendCompat(klaytn, 'klay_getBalance', [account, 'latest'])
 }
 
 export async function getBlockNumber(klaytn) {
-  return sendCompat(klaytn, 'klay_blockNumber', [])
+  return (await axios.post('https://klaytn-en.sixnetwork.io:8651/',{"jsonrpc":"2.0","method":"klay_blockNumber","params":[],"id":83})).data.result
 }
 
 export function pollEvery(fn, delay) {
