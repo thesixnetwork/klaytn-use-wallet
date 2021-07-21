@@ -77,7 +77,7 @@ export async function getAccountBalance(klaytn, account) {
 }
 
 export async function getBlockNumber(klaytn) {
-  return (await axios.post('https://klaytn-en.sixnetwork.io:8651/',{"jsonrpc":"2.0","method":"klay_blockNumber","params":[],"id":83})).data.result
+  return (await axios.post(await getRPCurl(),{"jsonrpc":"2.0","method":"klay_blockNumber","params":[],"id":83})).data.result
 }
 
 export function pollEvery(fn, delay) {
@@ -99,4 +99,40 @@ export function pollEvery(fn, delay) {
       clearTimeout(timer)
     }
   }
+}
+
+// RPC HELPER
+const RPCS = ["https://klaytn-en.sixnetwork.io:8651/","https://kaikas.cypress.klaytn.net:8651/", "https://kaikas.cypress.klaytn.net:8651/"]
+
+const checkHeartBeat = async (rpc) => {
+    return new Promise(reslove => {
+        axios.get(rpc)
+            .then((res) => {
+                reslove(res.status)
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    reslove(error.response.status);
+                }
+            });
+    })
+}
+
+const checkHeartBeatStatus = (status) => status === 200
+
+const getRPCurlIsWorking = async () => {
+    for (const rpc of RPCS) {
+        const status = await checkHeartBeat(rpc)
+        if (checkHeartBeatStatus(status)) {
+            return rpc
+        }
+    }
+   return "all node rpc not work"
+}
+const getRPCurl = async() => {
+    try {
+        return await getRPCurlIsWorking()
+    } catch (error) {
+        return "" // all rpc is die
+    }
 }
