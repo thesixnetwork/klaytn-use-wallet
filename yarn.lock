@@ -1572,7 +1572,7 @@
   "resolved" "https://registry.npmjs.org/@sixnetwork/caverjs-react-types/-/caverjs-react-types-1.0.3.tgz"
   "version" "1.0.3"
 
-"@sixnetwork/klip-connector@^1.0.8":
+"@sixnetwork/klip-connector@^1.0.8-klip-mobile-support-v6":
   "integrity" "sha512-Dpfndpuqe4nuJq+M4/gIHoZwqO0botxhOg8iMNd+NRUQW4Txh8azSw55JVSyUDOp7JAthWcq5gbLzP7ZknSrAQ=="
   "resolved" "https://registry.npmjs.org/@sixnetwork/klip-connector/-/klip-connector-1.0.8.tgz"
   "version" "1.0.8"

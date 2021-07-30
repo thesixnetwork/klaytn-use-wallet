@@ -411,9 +411,7 @@ function UseWalletProviderWrapper(props) {
 UseWalletProviderWrapper.propTypes = UseWalletProvider.propTypes
 UseWalletProviderWrapper.defaultProps = UseWalletProvider.defaultProps
 
-
 const KlipModal = () => {
-  // const { account, connector } = useWallet()
   const [countdown, setCountdown] = useState({
     minutes: 0,
     seconds: 0,
@@ -511,7 +509,6 @@ const KlipModal = () => {
     </div>
   )
 }
-
 
 const KlipModalContext = React.createContext(null)
 
