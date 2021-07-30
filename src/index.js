@@ -319,7 +319,6 @@ function UseWalletProvider({
     if (!account || !klaytn) {
       return
     }
-
     let cancel = false
 
     setType(null)
