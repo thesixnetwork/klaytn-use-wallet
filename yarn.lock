@@ -1572,10 +1572,10 @@
   "resolved" "https://registry.npmjs.org/@sixnetwork/caverjs-react-types/-/caverjs-react-types-1.0.3.tgz"
   "version" "1.0.3"
 
-"@sixnetwork/klip-connector@^1.0.9":
-  "integrity" "sha512-BxklBwGk91y/tkfk7iaFhIcq1Gl4nhrv0QkJtgtpAcnXMFlixz8pLctUGwwQ5A7RszpYaienLy1FmOrIdqqu2w=="
-  "resolved" "https://registry.npmjs.org/@sixnetwork/klip-connector/-/klip-connector-1.0.9.tgz"
-  "version" "1.0.9"
+"@sixnetwork/klip-connector@^1.0.10":
+  "integrity" "sha512-+Lz7t7kVZoLyXCV+TpRUr8Qujg4lZ2GeRb5l7B+Uvg+lo+z0E7on6EIij1A+O5Uj2g10CiHavWTeP4NhQ6NUGA=="
+  "resolved" "https://registry.npmjs.org/@sixnetwork/klip-connector/-/klip-connector-1.0.10.tgz"
+  "version" "1.0.10"
   dependencies:
     "@sixnetwork/caverjs-react-abstract-connector" "^1.0.4"
     "@sixnetwork/caverjs-react-types" "^1.0.3"
